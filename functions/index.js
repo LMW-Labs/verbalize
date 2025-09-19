@@ -2,10 +2,13 @@ const functions = require('@google-cloud/functions-framework');
 const speech = require('@google-cloud/speech');
 const { VertexAI } = require('@google-cloud/vertexai');
 
+// For 2nd gen functions - listen on the correct port
+const port = process.env.PORT || 8080;
+
 // Initialize clients
 const speechClient = new speech.SpeechClient();
 const vertexAI = new VertexAI({
-  project: process.env.GOOGLE_CLOUD_PROJECT,
+  project: 'verbalize-472619',  // Explicitly set your project ID
   location: 'us-central1'
 });
 
@@ -157,3 +160,10 @@ function cleanGeneratedCode(code) {
 
 // Export for testing
 module.exports = { createCodePrompt, cleanGeneratedCode };
+
+// Start the server for 2nd gen functions
+if (require.main === module) {
+  functions.getFunction('processVoice').listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
+}

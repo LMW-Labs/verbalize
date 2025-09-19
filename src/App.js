@@ -104,7 +104,7 @@ function App() {
       const base64Audio = await blobToBase64(audioBlob);
       
       // Call our backend API
-      const response = await fetch('/api/process-voice', {
+      const response = await fetch('https://us-central1-verbalize-472619.cloudfunctions.net/processVoice', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
