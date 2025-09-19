@@ -1,0 +1,18 @@
+{
+  "name": "verbalize-cloud-function",
+  "version": "1.0.0",
+  "description": "Voice to code processing function",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx functions-framework --target=processVoice",
+    "deploy": "gcloud functions deploy processVoice --runtime nodejs20 --trigger-http --allow-unauthenticated --memory 512MB --timeout 60s"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0",
+    "@google-cloud/speech": "^6.0.0",
+    "@google-cloud/vertexai": "^1.0.0"
+  },
+  "engines": {
+    "node": "20"
+  }
+}
